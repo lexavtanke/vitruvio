@@ -13,7 +13,7 @@ dataExtraction.averageStepsForCyclicalMotion = false;
 dataExtraction.allowableDeviation = 0.05; % [m] Deviation between neighbouring points. If the deviation is larger, additional points are interpolated.
 
 %% LEG PROPERTIES
-legCount  = 4;                  % Accepts values from 1 to 4.
+legCount  = 2;                  % Accepts values from 1 to 4.
 linkCount = 2;                  % Accepts values from 2 to 4. [thigh, shank, foot, phalanges]. Hip link connects HAA and HFE but is not included in link count.
 configSelection = 'X';          % X or M. By default, the HFE is outwards from HAA but for M configuration this may not be desired. To avoid this set the hip length to negative in getRobotProperties.m.
 
@@ -29,9 +29,9 @@ actuateJointDirectly.DFE = true;
 %% ACTUATOR SELECTION
 % Select from: {ANYdrive, Neo, RoboDrive, Dynamixel64R, DynamixelXM540, Other} or add a new actuator in
 % getActuatorProperties
-actuatorSelection.HAA = 'ANYdrive'; 
-actuatorSelection.HFE = 'ANYdrive'; 
-actuatorSelection.KFE = 'ANYdrive';
+actuatorSelection.HAA = 'RobStride04'; 
+actuatorSelection.HFE = 'RobStride04'; 
+actuatorSelection.KFE = 'RobStride04';
 actuatorSelection.AFE = 'ANYdrive'; 
 actuatorSelection.DFE = 'ANYdrive'; 
 
@@ -115,9 +115,9 @@ optimizationProperties.viz.displayBestCurrentDesign = true; % Display chart of c
 % importMotionData.m script
 
 %%% Add your trajectory data file here with name class_task %%%
-dataSelection.yourTrajectoryData = false;
+dataSelection.eden_flatwalk= true;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-dataSelection.ANYmalBear_fastTrot = true; 
+dataSelection.ANYmalBear_fastTrot = false; 
 dataSelection.mini_pronk          = false;
 dataSelection.hopper_hop          = false;
 

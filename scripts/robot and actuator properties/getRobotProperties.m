@@ -6,72 +6,72 @@
 function robotProperties = getRobotProperties(robotSelection, transmissionMethod, actuateJointDirectly, jointNames, linkNames, linkCount)
     %% Your robot
     %%% Add your robot properties %%%
-    robot.yourRobot.mass.total = 38.8; % only used to calculated cost of transport
-    robot.yourRobot.legCount   = 4;
+    robot.eden.mass.total = 50; % only used to calculated cost of transport
+    robot.eden.legCount   = 1;
     
     % Density of each link
     % kg/m^3. Density values calculated to give correct link mass when link
     % approximated as solid cylinder.
-    robot.yourRobot.legDensity.hip(1)       = 9728.3;   robot.yourRobot.legDensity.hip(2)       = 9728.3;
-    robot.yourRobot.legDensity.thigh(1)     = 5826.3;   robot.yourRobot.legDensity.thigh(2)     = 5826.3;
-    robot.yourRobot.legDensity.shank(1)     = 888.2668; robot.yourRobot.legDensity.shank(2)     = 888.2668;
-    robot.yourRobot.legDensity.foot(1)      = 800;      robot.yourRobot.legDensity.foot(2)      = 800;
-    robot.yourRobot.legDensity.phalanges(1) = 800;      robot.yourRobot.legDensity.phalanges(2) = 800;    
+    robot.eden.legDensity.hip(1)       = 9728.3;   robot.eden.legDensity.hip(2)       = 9728.3;
+    robot.eden.legDensity.thigh(1)     = 5826.3;   robot.eden.legDensity.thigh(2)     = 5826.3;
+    robot.eden.legDensity.shank(1)     = 888.2668; robot.eden.legDensity.shank(2)     = 888.2668;
+    robot.eden.legDensity.foot(1)      = 800;      robot.eden.legDensity.foot(2)      = 800;
+    robot.eden.legDensity.phalanges(1) = 800;      robot.eden.legDensity.phalanges(2) = 800;    
     
     % End effector mass
-    robot.yourRobot.EE(1).mass = 0.1402;
-    robot.yourRobot.EE(2).mass = 0.1402;
+    robot.eden.EE(1).mass = 0.1402;
+    robot.eden.EE(2).mass = 0.1402;
 
     % Offset from nominal CoM position to base hip attachment for each leg.
-    robot.yourRobot.xNom(1) = 0.225;
-    robot.yourRobot.xNom(2) = 0.225;
-    robot.yourRobot.yNom(1) = 0.11;
-    robot.yourRobot.yNom(2) = 0.11;
-    robot.yourRobot.zNom = 0; % offset from CoM to HAA in z direction. Positive value means HAA above CoM.
+    robot.eden.xNom(1) = 0.0;
+    robot.eden.xNom(2) = 0.0;
+    robot.eden.yNom(1) = 0.2;
+    robot.eden.yNom(2) = 0.2;
+    robot.eden.zNom = 0; % offset from CoM to HAA in z direction. Positive value means HAA above CoM.
     
-    robot.yourRobot.nomHipPos.LF = [ robot.yourRobot.xNom(1),  robot.yourRobot.yNom(1), robot.yourRobot.zNom];
-    robot.yourRobot.nomHipPos.LH = [-robot.yourRobot.xNom(2),  robot.yourRobot.yNom(2), robot.yourRobot.zNom];
-    robot.yourRobot.nomHipPos.RF = [ robot.yourRobot.xNom(1), -robot.yourRobot.yNom(1), robot.yourRobot.zNom];
-    robot.yourRobot.nomHipPos.RH = [-robot.yourRobot.xNom(2), -robot.yourRobot.yNom(2), robot.yourRobot.zNom];
+    robot.eden.nomHipPos.LF = [ robot.eden.xNom(1),  robot.eden.yNom(1), robot.eden.zNom];
+    robot.eden.nomHipPos.LH = [-robot.eden.xNom(2),  robot.eden.yNom(2), robot.eden.zNom];
+    robot.eden.nomHipPos.RF = [ robot.eden.xNom(1), -robot.eden.yNom(1), robot.eden.zNom];
+    robot.eden.nomHipPos.RH = [-robot.eden.xNom(2), -robot.eden.yNom(2), robot.eden.zNom];
 
     % Link lengths [m]
-    robot.yourRobot.hip(1).length   = 0.112;
-    robot.yourRobot.hip(2).length   = 0.112;
-    robot.yourRobot.thigh(1).length = 0.25;
-    robot.yourRobot.thigh(2).length = 0.25;
-    robot.yourRobot.shank(1).length = 0.33; 
-    robot.yourRobot.shank(2).length = 0.33;
-    robot.yourRobot.foot(1).length  = 0.16;
-    robot.yourRobot.foot(2).length  = 0.16;
-    robot.yourRobot.phalanges(1).length = 0.1;
-    robot.yourRobot.phalanges(2).length = 0.1;
+    robot.eden.hip(1).length   = 0.112;
+    robot.eden.hip(2).length   = 0.112;
+    robot.eden.thigh(1).length = 0.429;
+    robot.eden.thigh(2).length = 0.429;
+    robot.eden.shank(1).length = 0.501; 
+    robot.eden.shank(2).length = 0.501;
+    robot.eden.foot(1).length  = 0.16;
+    robot.eden.foot(2).length  = 0.16;
+    robot.eden.phalanges(1).length = 0.1;
+    robot.eden.phalanges(2).length = 0.1;
 
     % Link radius [m] (only used to calculate link mass as solid cylinder)
-    robot.yourRobot.hip(1).radius   = 0.015;
-    robot.yourRobot.hip(2).radius   = 0.015;
-    robot.yourRobot.thigh(1).radius = 0.015;
-    robot.yourRobot.thigh(2).radius = 0.015;
-    robot.yourRobot.shank(1).radius = 0.015;
-    robot.yourRobot.shank(2).radius = 0.015;
-    robot.yourRobot.foot(1).radius  = 0.015;
-    robot.yourRobot.foot(2).radius  = 0.015;
-    robot.yourRobot.phalanges(1).radius = 0.015;
-    robot.yourRobot.phalanges(2).radius = 0.015;
+    robot.eden.hip(1).radius   = 0.015;
+    robot.eden.hip(2).radius   = 0.015;
+    robot.eden.thigh(1).radius = 0.015;
+    robot.eden.thigh(2).radius = 0.015;
+    robot.eden.shank(1).radius = 0.015;
+    robot.eden.shank(2).radius = 0.015;
+    robot.eden.foot(1).radius  = 0.015;
+    robot.eden.foot(2).radius  = 0.015;
+    robot.eden.phalanges(1).radius = 0.015;
+    robot.eden.phalanges(2).radius = 0.015;
 
     % Transmission Ratio
     % For remote and directly actuated joints
     % GearRatio = input speed/ output speed
     % Front legs                                        Hind legs
-    robot.yourRobot.transmissionGearRatio.HAA(1) = 1;  robot.yourRobot.transmissionGearRatio.HAA(2) = 1;
-    robot.yourRobot.transmissionGearRatio.HFE(1) = 1;  robot.yourRobot.transmissionGearRatio.HFE(2) = 1;
-    robot.yourRobot.transmissionGearRatio.KFE(1) = 1;  robot.yourRobot.transmissionGearRatio.KFE(2) = 1;
-    robot.yourRobot.transmissionGearRatio.AFE(1) = 1;  robot.yourRobot.transmissionGearRatio.AFE(2) = 1;
-    robot.yourRobot.transmissionGearRatio.DFE(1) = 1;  robot.yourRobot.transmissionGearRatio.DFE(2) = 1;    
+    robot.eden.transmissionGearRatio.HAA(1) = 1;  robot.eden.transmissionGearRatio.HAA(2) = 1;
+    robot.eden.transmissionGearRatio.HFE(1) = 1;  robot.eden.transmissionGearRatio.HFE(2) = 1;
+    robot.eden.transmissionGearRatio.KFE(1) = 1;  robot.eden.transmissionGearRatio.KFE(2) = 1;
+    robot.eden.transmissionGearRatio.AFE(1) = 1;  robot.eden.transmissionGearRatio.AFE(2) = 1;
+    robot.eden.transmissionGearRatio.DFE(1) = 1;  robot.eden.transmissionGearRatio.DFE(2) = 1;    
         
     % Base dimensions used for visualization - visualized as a box
-    robot.yourRobot.baseLength = 0.6;
-    robot.yourRobot.baseWidth  = 0.24;
-    robot.yourRobot.baseHeight = 0.2;     
+    robot.eden.baseLength = 0.2;
+    robot.eden.baseWidth  = 0.40;
+    robot.eden.baseHeight = 0.6;     
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
      %% ANYmal Bear

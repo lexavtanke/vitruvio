@@ -12,6 +12,15 @@ function [maxTorqueLimit, maxqdotLimit, maxPowerLimit, actuatorMass, gearRatio, 
         efficiencyMinMotor = 0.1;  
         efficiencyMaxMotor = 0.9; % motor efficiency before gearing losses
     end
+    if isequal(actuatorName,'RobStride04')
+        maxTorqueLimit     = 120;  % [Nm]   
+        maxqdotLimit       = 20;  % [rad/s] 
+        maxPowerLimit      = 1400; % [W]   
+        actuatorMass       = 1.42;   % [kg]
+        gearRatio          = 9;
+        efficiencyMinMotor = 0.1;  
+        efficiencyMaxMotor = 0.9; % motor efficiency before gearing losses
+    end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%    
     if isequal(actuatorName,'Dynamixel64R') % Dynamixel MX-64R
         maxTorqueLimit = 7.3;  % [Nm]   
@@ -52,7 +61,7 @@ function [maxTorqueLimit, maxqdotLimit, maxPowerLimit, actuatorMass, gearRatio, 
         efficiencyMinMotor = 0.1;  
         efficiencyMaxMotor = 0.95; % motor efficiency before gearing losses        
     end
-    
+
     if isequal(actuatorName,'RoboDrive') % RoboDrive 115x25
         maxTorqueLimit = 70;  % [Nm]     
         maxqdotLimit   = 40; % [rad/s] 

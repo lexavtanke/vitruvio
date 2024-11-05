@@ -7,9 +7,9 @@ clear;
 close all;
 
 %% Enter path to bag containing trajectory data
-pathToTrajectoryData =  'pathToBagFile.bag';
-saveName = 'trajectoryDataFileName.mat';
-legCount = 4; % Specify number of legs from 1 to 4.
+pathToTrajectoryData =  'eden_slopewalk.bag';
+saveName = 'eden_slopewalk.mat';
+legCount = 2; % Specify number of legs from 1 to 4.
 m = 50;   % mass of the robot used in Towr
 
 %% Extract the desired 3D vectors from the bag
